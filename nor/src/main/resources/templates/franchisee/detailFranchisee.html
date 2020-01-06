@@ -6,122 +6,112 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Franchisee Index</title>
+  <title>Detail Franchisee</title>
 
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap core CSS -->
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
-  <link href="css/heroic-features.css" rel="stylesheet">
-  <style>
-	.box {
-		height: 50px;
-		width: 50px;
-		text-align: center;
-		border: 1px solid black;
-		border-radius: 5px;
+<!-- Custom styles for this template -->
+<link href="css/heroic-features.css" rel="stylesheet">
+<style>
+   .box {
+      height: 50px;
+      width: 50px;
+      text-align: center;
+      border: 1px solid black;
+      border-radius: 5px;
+   }
+   
+   .center {
+      text-align: center;
+   }
+   
+   #seat {
+      margin-left: auto;
+      margin-right: auto;
+      border: "0";
+   }
+   #seat div{
+         background-color: #FFFFFF;
+   }
+   
+   ::-webkit-scrollbar{width: 16px;}
+      ::-webkit-scrollbar-track {background-color:#4C4C4C;}
+      ::-webkit-scrollbar-thumb {background-color:#6799FF;border-radius: 10px;}
+      ::-webkit-scrollbar-thumb:hover {background: #555;}
+      ::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {
+      width:16px;height:16px;background:#4C4C4C;} 
+   
+	body{
+	  text-align:center;
 	}
-	
-	.center {
-		text-align: center;
+	body:before{
+	  content:'';
+	  height:100%;
+	  display:inline-block;
+	  vertical-align:middle;
 	}
-	
-	#seat {
-		margin-left: auto;
-		margin-right: auto;
-		border: "0";
+	button{
+	  background:#2478FF;
+	  color:#fff;
+	  border:none;
+	  position:relative;
+	  height:38px;
+	  font-size:0.9em;
+	  padding:0 2em;
+	  cursor:pointer;
+	  transition:800ms ease all;
+	  outline:none;
 	}
-	#seat div{
-   		background-color: #FFFFFF;
+	button:hover{
+	  background:#fff;
+	  color:#1AAB8A;
 	}
-	
-	::-webkit-scrollbar{width: 16px;}
-		::-webkit-scrollbar-track {background-color:#4C4C4C;}
-		::-webkit-scrollbar-thumb {background-color:#6799FF;border-radius: 10px;}
-		::-webkit-scrollbar-thumb:hover {background: #555;}
-		::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {
-		width:16px;height:16px;background:#4C4C4C;} 
-	
-
-  height:100%;
-}
-body{
-  text-align:center;
-}
-body:before{
-  content:'';
-  height:100%;
-  display:inline-block;
-  vertical-align:middle;
-}
-button{
-  background:#2478FF;
-  color:#fff;
-  border:none;
-  position:relative;
-  height:38px;
-  font-size:0.9em;
-  padding:0 2em;
-  cursor:pointer;
-  transition:800ms ease all;
-  outline:none;
-}
-button:hover{
-  background:#fff;
-  color:#1AAB8A;
-}
-button:before,button:after{
-  content:'';
-  position:absolute;
-  top:0;
-  right:0;
-  height:2px;
-  width:0;
-  background: #1AAB8A;
-  transition:400ms ease all;
-}
-button:after{
-  right:inherit;
-  top:inherit;
-  left:0;
-  bottom:0;
-}
-button:hover:before,button:hover:after{
-  width:100%;
-  transition:800ms ease all;
-}
+	button:before,button:after{
+	  content:'';
+	  position:absolute;
+	  top:0;
+	  right:0;
+	  height:2px;
+	  width:0;
+	  background: #1AAB8A;
+	  transition:400ms ease all;
+	}
+	button:after{
+	  right:inherit;
+	  top:inherit;
+	  left:0;
+	  bottom:0;
+	}
+	button:hover:before,button:hover:after{
+	  width:100%;
+	  transition:800ms ease all;
+	}
 </style>
 </head>
 
 <body>
-
 <!-- Navigation -->
   <div th:fragment="nav">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="/franchiseeIndex">PI-CA-BOO</a>
+      <a class="navbar-brand" href="/nor/franchiseeIndex">PI-CA-BOO</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
         
-      	  <li class="nav-item">
+           <li class="nav-item">
             <label class="nav-link" th:text="${memberName}"></label>
           </li>
        
           <!-- 로그아웃 -->
           <li class="nav-item">
-            <a class="nav-link" href="/logout">logout</a>
+            <a class="nav-link" href="/nor/logout">logout</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/mypageFranchisee">MyPage</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="/nor/mypageFranchisee">MyPage</a>
           </li>
         </ul>
       </div>
@@ -130,174 +120,174 @@ button:hover:before,button:hover:after{
   </div>
   <!-- Page Content -->
   <div class="container jumbotron my-4">
-	  <!-- pc방 상세 페이지 -->
-	  <h1 class="my-4" th:text="${franchisee.franchiseeName}"></h1>
-	  
-	  <h2><small>좌석 정보</small></h2>
-	  
-	  <div class="row">
-	  
-	  <!-- 좌석 정보 테이블 -->
-	    <div class="col-md-8">
-	      <div style="overflow:auto">
-	      	<table id="seat"></table>
-	    	</div>	             
-	 	</div>
-	
-	    <!-- pc방 정보 -->
-	    <div class="col-md-2 shadow p-4 mb-4 bg-light">
-	  
-		    <h3 class="my-3">PC방 정보</h3>
-		    <div th:object="${franchisee}">
-			     <p th:text="'CRN: ' + *{franchiseeCrn}">crn</p>
-			     <p th:text="'Phone: ' + *{franchiseePhone}">phone</p>
-		    </div>
-	   		
-		    <h3 class="my-3">PC방 사양</h3>
-		    <div th:object="${franchiseeInfo}">
-		      <ul>
-		        <li th:text="*{franchiseeSpec?.cpu}">cpu</li>
-		        <li th:text="*{franchiseeSpec?.vga}">vga</li>
-		        <li th:text="*{franchiseeSpec?.ram}">ram</li>
-		        <li>짜파게티 보유</li>
-		      </ul>
-		    </div>
+     <!-- pc방 상세 페이지 -->
+     <h1 class="my-4" th:text="${franchisee.franchiseeName}"></h1>
+     
+     <h2><small>좌석 정보</small></h2>
+     
+     <div class="row">
+     
+     <!-- 좌석 정보 테이블 -->
+       <div class="col-md-8">
+         <div style="overflow:auto">
+            <table id="seat"></table>
+          </div>                
+       </div>
+   
+       <!-- pc방 정보 -->
+       <div class="col-md-2 shadow p-4 mb-4 bg-light">
+     
+          <h3 class="my-3">PC방 정보</h3>
+          <div th:object="${franchisee}">
+              <p th:text="'CRN: ' + *{franchiseeCrn}">crn</p>
+              <p th:text="'Phone: ' + *{franchiseePhone}">phone</p>
+          </div>
+            
+          <h3 class="my-3">PC방 사양</h3>
+          <div th:object="${franchiseeInfo}">
+            <ul>
+              <li th:text="*{franchiseeSpec?.cpu}">cpu</li>
+              <li th:text="*{franchiseeSpec?.vga}">vga</li>
+              <li th:text="*{franchiseeSpec?.ram}">ram</li>
+              <li>짜파게티 보유</li>
+            </ul>
+          </div>
     
-	    </div>
-		
-	  </div>
-	  <!-- /.row -->
-		
-	  <!-- pc방 사진 -->
-	  <div>
+       </div>
+      
+     </div>
+     <!-- /.row -->
+      
+     <!-- pc방 사진 -->
+     <div>
       <h3 class="my-3">PC방 사진</h3>
       <div class="row">
-      	<div th:each="pic : ${franchiseeInfo.franchisePicList}">
-	        <div>
-	          <img th:src="${franchiseeInfo.uploadPath} + ${pic.fileName}" th:alt-title="${pic.originName}" width="200" height="200">
-	        </div>
-    	</div>
+         <div th:each="pic : ${franchiseeInfo.franchisePicList}">
+           <div>
+             <img th:src="${franchiseeInfo.uploadPath} + ${pic.fileName}" th:alt-title="${pic.originName}" width="200" height="200">
+           </div>
+       </div>
       </div>
-	    
-	  <!-- 가맹점 관리 버튼 -->
-	  <h3 class="my-4">관리 메뉴</h3>
-	
-	  <div class="row" style="text-align:center">
-		
-			
-	    <div th:if="${seatSize<1}" class="col-md-2 col-sm-5 mb-4">
-	      <a href="#" th:href="@{/addFranchiseeSeat?(franchiseeNo=${franchisee.franchiseeNo})}" class="btn btn-primary">좌석 입력</a>
-	    </div>
-	
-		<div th:if="${seatSize>0}" class="col-md-2 col-sm-5 mb-4">
-	      <a href="#" th:href="@{/removeSeat?(franchiseeNo=${franchisee.franchiseeNo})}" class="btn btn-primary">좌석 삭제</a>
-	    </div>
-	
-	    <div th:if="${franchiseeInfo.franchiseeSpec == null}" class="col-md-2 col-sm-5 mb-4">
-	      <a href="#" th:href="@{/addFranchiseeInfo?(franchiseeNo=${franchisee.franchiseeNo})}" class="btn btn-primary">가맹점 정보 입력</a>
-	    </div>
-	
-	    <div th:if="${franchiseeInfo.franchiseeSpec != null}" class="col-md-2 col-sm-5 mb-4">
-	      <a href="#" th:href="@{/modifyFranchiseeInfo?(franchiseeNo=${franchisee.franchiseeNo})}" class="btn btn-primary">가맹점 정보 수정</a>
-	    </div>
-		
-		<div class="col-md-2 col-sm-5 mb-4">
-	      <a href="#" th:href="@{/franchiseeFoodIndex?(franchiseeNo=${franchisee.franchiseeNo})}" class="btn btn-primary">가맹점 상품 관리</a>
-	    </div>
+       
+     <!-- 가맹점 관리 버튼 -->
+     <h3 class="my-4">관리 메뉴</h3>
+   
+     <div class="row" style="text-align:center">
+      
+         
+       <div th:if="${seatSize<1}" class="col-md-2 col-sm-5 mb-4">
+         <a href="#" th:href="@{/addFranchiseeSeat?(franchiseeNo=${franchisee.franchiseeNo})}" class="btn btn-primary">좌석 입력</a>
+       </div>
+   
+      <div th:if="${seatSize>0}" class="col-md-2 col-sm-5 mb-4">
+         <a href="#" th:href="@{/removeSeat?(franchiseeNo=${franchisee.franchiseeNo})}" class="btn btn-primary">좌석 삭제</a>
+       </div>
+   
+       <div th:if="${franchiseeInfo.franchiseeSpec == null}" class="col-md-2 col-sm-5 mb-4">
+         <a href="#" th:href="@{/addFranchiseeInfo?(franchiseeNo=${franchisee.franchiseeNo})}" class="btn btn-primary">가맹점 정보 입력</a>
+       </div>
+   
+       <div th:if="${franchiseeInfo.franchiseeSpec != null}" class="col-md-2 col-sm-5 mb-4">
+         <a href="#" th:href="@{/modifyFranchiseeInfo?(franchiseeNo=${franchisee.franchiseeNo})}" class="btn btn-primary">가맹점 정보 수정</a>
+       </div>
+      
+      <div class="col-md-2 col-sm-5 mb-4">
+         <a href="#" th:href="@{/franchiseeFoodIndex?(franchiseeNo=${franchisee.franchiseeNo})}" class="btn btn-primary">가맹점 상품 관리</a>
+       </div>
 
-		<div class="col-md-2 col-sm-5 mb-4">
-		<button id="food"  onclick="window.open('foodReservationList','window_name','width=780,height=600,location=no,status=no,scrollbars=yes');">음식주문 확인</button>
-	  	</div>
-	  
-	  <div class="col-md-2 col-sm-5 mb-4">
-		<button id="seat"  onclick="window.open('seatReservationList','window_name','width=780,height=600,location=no,status=no,scrollbars=yes');">좌석예약 확인</button>
-	  	</div>
-	  	</div>
-	  	
-	  <!-- /.row -->
-	
-	 </div>
-	
+      <div class="col-md-2 col-sm-5 mb-4">
+      <button id="food"  onclick="window.open('foodReservationList','window_name','width=780,height=600,location=no,status=no,scrollbars=yes');">음식주문 확인</button>
+        </div>
+     
+     <div class="col-md-2 col-sm-5 mb-4">
+      <button id="seat"  onclick="window.open('seatReservationList','window_name','width=780,height=600,location=no,status=no,scrollbars=yes');">좌석예약 확인</button>
+        </div>
+        </div>
+        
+     <!-- /.row -->
+   
+    </div>
+   
   </div>
   <!-- /.container -->
   <!-- Footer -->
   <div th:fragment="copyright">
-	  <footer class="py-5 bg-dark">
-	    <div class="container">
-	      <p class="m-0 text-center text-white">Copyright &copy; PICABOO 2019</p>
-	    </div>
-	    <!-- /.container -->
-	  </footer>
+     <footer class="py-5 bg-dark">
+       <div class="container">
+         <p class="m-0 text-center text-white">Copyright &copy; PICABOO 2019</p>
+       </div>
+       <!-- /.container -->
+     </footer>
   </div>
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script th:inline="javascript">
-	 let seat = /*[[${seat}]]*/
-	 // console.log(seat);
-	 let html = "";
-	 let a = 0;
-	 let b = 0;
-	 let rowMax = 0;
-	 let colsMax = 0;
-	 
-	 $(seat).each(function(index,item){
-		 if(item.seatRow > rowMax){
-			 rowMax = item.seatRow;
-		 }
-		 if(item.seatCols > colsMax){
-			 colsMax = item.seatCols
-		 }
-	 })
-	 //console.log(rowMax)
-	 //console.log(colsMax)
-	 
-	 for(let row=1; row<=rowMax; row++){
-		 html += "<tr id='"+row+"'>"
-		 
-		 for(let cols=1; cols<=colsMax; cols++){
-			 html += "<td id='"+cols+"'>"
-			 html += "<div class='box'></div>";
-			 html += "</td>";
-		 }
-		 
-		 html += "</tr>"
-	 }
-	 $("#seat").html(html);
-	 
-	$(document).ready(function(){
-			$("#seat tr td").each(function(index1,item1){
-				//console.log($(this).closest('tr').attr('id'))
-				let $this = $(this)
-				let trId = $this.closest('tr').attr('id')
-				let tdId = $this.closest('td').attr('id')
-				/* console.log("tr",trId)
-				console.log("td",tdId) */
-				$(seat).each(function(index2,item2){
-					if(trId == item2.seatRow && tdId == item2.seatCols){
-						/* console.log(item2.seatNo) */
-						$this.children().append("pc"+item2.seatNo)
-						// console.log(item2)
-						let use = item2.seatUse
-						switch(use){
-							case "R":
-								$this.children().css("background-color","#A566FF");
-								$this.children().append("<br>예약석");
-								break;
-							case "Y":
-								$this.children().css("background-color","#B5B2FF");
-								$this.children().append("<br>사용중");
-								break;
-							case "N":
-								$this.children().css("background-color","#A0BAED");
-								$this.children().append("<br>빈자리");
-								break;
-						}
-					}
-					
-				})
-			})
-		})
+   <script th:inline="javascript">
+    let seat = /*[[${seat}]]*/
+    // console.log(seat);
+    let html = "";
+    let a = 0;
+    let b = 0;
+    let rowMax = 0;
+    let colsMax = 0;
+    
+    $(seat).each(function(index,item){
+       if(item.seatRow > rowMax){
+          rowMax = item.seatRow;
+       }
+       if(item.seatCols > colsMax){
+          colsMax = item.seatCols
+       }
+    })
+    //console.log(rowMax)
+    //console.log(colsMax)
+    
+    for(let row=1; row<=rowMax; row++){
+       html += "<tr id='"+row+"'>"
+       
+       for(let cols=1; cols<=colsMax; cols++){
+          html += "<td id='"+cols+"'>"
+          html += "<div class='box'></div>";
+          html += "</td>";
+       }
+       
+       html += "</tr>"
+    }
+    $("#seat").html(html);
+    
+   $(document).ready(function(){
+         $("#seat tr td").each(function(index1,item1){
+            //console.log($(this).closest('tr').attr('id'))
+            let $this = $(this)
+            let trId = $this.closest('tr').attr('id')
+            let tdId = $this.closest('td').attr('id')
+            /* console.log("tr",trId)
+            console.log("td",tdId) */
+            $(seat).each(function(index2,item2){
+               if(trId == item2.seatRow && tdId == item2.seatCols){
+                  /* console.log(item2.seatNo) */
+                  $this.children().append("pc"+item2.seatNo)
+                  // console.log(item2)
+                  let use = item2.seatUse
+                  switch(use){
+                     case "R":
+                        $this.children().css("background-color","#A566FF");
+                        $this.children().append("<br>예약석");
+                        break;
+                     case "Y":
+                        $this.children().css("background-color","#B5B2FF");
+                        $this.children().append("<br>사용중");
+                        break;
+                     case "N":
+                        $this.children().css("background-color","#A0BAED");
+                        $this.children().append("<br>빈자리");
+                        break;
+                  }
+               }
+               
+            })
+         })
+      })
 
 </script>
 </body>

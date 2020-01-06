@@ -6,7 +6,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>QnA Index</title>
+  <title>QnA Detail</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -14,25 +14,25 @@
   <!-- Custom styles for this template -->
   <link href="css/heroic-features.css" rel="stylesheet">
   <style>
-   .box {
-      height: 50px;
-      width: 50px;
-      text-align: center;
-      border: 1px solid black;
-      border-radius: 5px;
-   }
-   
-   .center {
-      text-align: center;
-   }
-   
-   ::-webkit-scrollbar{width: 16px;}
-      ::-webkit-scrollbar-track {background-color:#4C4C4C;}
-      ::-webkit-scrollbar-thumb {background-color:#6799FF;border-radius: 10px;}
-      ::-webkit-scrollbar-thumb:hover {background: #555;}
-      ::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {
-      width:16px;height:16px;background:#4C4C4C;} 
-   
+	.box {
+		height: 50px;
+		width: 50px;
+		text-align: center;
+		border: 1px solid black;
+		border-radius: 5px;
+	}
+	
+	.center {
+		text-align: center;
+	}
+	
+	::-webkit-scrollbar{width: 16px;}
+		::-webkit-scrollbar-track {background-color:#4C4C4C;}
+		::-webkit-scrollbar-thumb {background-color:#6799FF;border-radius: 10px;}
+		::-webkit-scrollbar-thumb:hover {background: #555;}
+		::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {
+		width:16px;height:16px;background:#4C4C4C;} 
+	
 </style>
 </head>
 
@@ -42,26 +42,19 @@
   <div th:fragment="nav">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="/adminIndex">PI-CA-BOO</a>
+      <a class="navbar-brand" href="/nor/adminIndex">PI-CA-BOO</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
         
-           <li class="nav-item">
+      	  <li class="nav-item">
             <label class="nav-link" th:text="${memberName}"></label>
-          </li>
-       
+          </li>      
           <!-- 로그아웃 -->
           <li class="nav-item">
-            <a class="nav-link" href="/logout">logout</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="/nor/logout">logout</a>
           </li>
         </ul>
       </div>
@@ -70,35 +63,36 @@
   </div>
   
   <!-- Page Content -->
-   <div class="container jumbotron my-4">
-   <h4>QnA 답변</h4>
-      <form action="/QnAUpdate" method="post" >
-         <input type="hidden" th:value="${adminQnA.qnaNo}" name="qnaNo" id="qnaNo">
-         <input type="hidden" th:value="${adminQnA.customerNo}" name="customerNo" id="customerNo">
-         <input type="hidden" th:value="${adminQnA.qnaType}" name="qnaType" id="qnaType">
-         <input type="hidden" th:value="${adminQnA.qnaDate}" name="qnaDate" id="qnaDate">
-         <input type="hidden" th:value="${adminQnA.customerMail}" name="customerMail" id="customerMail">
-         <div class="form-group">
-            <label class="form-control" th:text="${adminQnA.qnaTitle}" id="qnaTitle" name="qnaTitle" readonly="readonly">QnA_Title:</label> 
-         </div>
-         <div class="form-group">
-            <label for="qnaContent">QnA_Question:</label>
-            <textarea class="form-control" th:text="${adminQnA.qnaQuestion}" cols="50" rows="10" id="qnaQuestion" name="qnaQuestion" readonly="readonly"></textarea>
-         </div>
-         <div class="form-group">
-            <label for="qnaAnswer">QnA_Answer:</label>
-            <textarea class="form-control" cols="50" rows="10" id="qnaAnswer" name="qnaAnswer"></textarea>
-         </div>
-         <button type="submit" id="addButton" class="btn btn-info">입력</button>
-      </form>
-   </div>
-     
+	<div class="container jumbotron my-4">
+	<h4>QnA 답변</h4>
+		<form action="/nor/QnAUpdate" method="post" >
+			<input type="hidden" th:value="${adminQnA.qnaNo}" name="qnaNo" id="qnaNo">
+			<input type="hidden" th:value="${adminQnA.customerNo}" name="customerNo" id="customerNo">
+			<input type="hidden" th:value="${adminQnA.qnaType}" name="qnaType" id="qnaType">
+			<input type="hidden" th:value="${adminQnA.qnaDate}" name="qnaDate" id="qnaDate">
+			<input type="hidden" th:value="${adminQnA.customerMail}" name="customerMail" id="customerMail">
+			<div class="form-group">
+         		QnA_Title:
+            	<label type="text" class="form-control" th:text="${adminQnA.qnaTitle}" id="qnaTitle" name="qnaTitle" readonly="readonly"></label> 
+         	</div>
+			<div class="form-group">
+	         	QnA_Question:
+	            <textarea class="form-control" th:text="${adminQnA.qnaQuestion}" cols="50" rows="10" id="qnaQuestion" name="qnaQuestion" readonly="readonly"></textarea>
+	         </div>
+			<div class="form-group">
+				<label for="qnaAnswer">QnA_Answer:</label>
+				<textarea class="form-control" cols="50" rows="10" id="qnaAnswer" name="qnaAnswer"></textarea>
+			</div>
+			<button type="submit" id="addButton" class="btn btn-info">입력</button>
+		</form>
+	</div>
+	
   <div th:fragment="copyright">
-     <footer class="py-5 bg-dark">
-       <div class="container">
-         <p class="m-0 text-center text-white">Copyright &copy; PICABOO 2019</p>
-       </div>
-     </footer>
+	  <footer class="py-5 bg-dark">
+	    <div class="container">
+	      <p class="m-0 text-center text-white">Copyright &copy; PICABOO 2019</p>
+	    </div>
+	  </footer>
   </div>
 </body>
 

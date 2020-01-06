@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+  
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -19,13 +20,13 @@
    
    .preface {
        padding-bottom: px;
-       background-color: #ff80aa;
+       background-color: #2FA0B3;
        border-bottom: 1px solid #d1d1d1;
    }
    
    .content {
        transition: max-height 0.2s ease-in-out;
-       background-color: #ffdb4d;
+       background-color: #C6ECDE;
        overflow: hidden;
        max-height: 0;
    }
@@ -41,6 +42,9 @@
       ::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {
       width:16px;height:16px;background:#4C4C4C;} 
 
+	.radius{
+		border-radius: 5px;
+	}
 </style>
 </head>
 
@@ -50,7 +54,7 @@
   <div th:fragment="nav">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="/adminIndex">PI-CA-BOO</a>
+      <a class="navbar-brand" href="/nor/adminIndex">PI-CA-BOO</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -60,16 +64,9 @@
            <li class="nav-item">
             <label class="nav-link" th:text="${memberName}"></label>
           </li>
-       
           <!-- 로그아웃 -->
           <li class="nav-item">
-            <a class="nav-link" href="/logout">logout</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="/nor/logout">logout</a>
           </li>
         </ul>
       </div>
@@ -77,50 +74,48 @@
   </nav>
    </div>
   
-  <!-- /.container -->
+  <!-- Page container -->
   <div class="container jumbotron my-4">
    <div th:fragment="event">
-      <!-- 가맹점 목록 -->
+       <!-- 가맹점 목록 -->
       <h3>FAQ List</h3>
-	  <form action="/addFAQ" method="post" class="was-validated">
-	 	  <div class="form-group">
-	     	 <label for="faqTitle">title추가 : </label>
-	     	 <input type="text" class="form-control" id="faqTitle" name="faqTitle" placeholder="Enter Title" required>
-	      </div>
-	      
-	      <div class="form-group">
-	     	 <label for="faqContent">content추가 : </label>
-	     	 <textarea cols="50" rows="10" class="form-control" id="faqContent" name="faqContent" placeholder="Enter Content" required></textarea>
-	      </div>
-	      
-	      <button type="submit" class="btn btn-info" id="faqAdminAdd">추가</button>
+	  	<form action="/nor/addFAQ" method="post" class="was-validated">
+      <div class="form-group">
+      	<label for="faqTitle">title추가 : </label>
+      	<input type="text" class="form-control" id="faqTitle" name="faqTitle" placeholder="Enter Title" required>
+      </div>
+      <div class="form-group">
+	      <label for="faqContent">content추가 : </label>
+	      <textarea cols="50" rows="10" class="form-control" id="faqContent" name="faqContent" placeholder="Enter Content" required></textarea>
+	  </div>
+      <button type="submit" class="btn btn-info" id="faqAdminAdd">추가</button>
       </form>
-    </div>
-   </div>
-   <div class="container jumbotron my-4"> 
-      <form action="/FAQAdmin" method="get">
-	      <label for="searchWord">검색어(제목) : </label>
-	      <br>
-	      <input name="searchWord" type="text">
-	      <button type="submit" class="btn btn-secondary">검색</button>
+      
+      <form action="/nor/FAQAdmin" method="get">
+      	<label for="searchWord">검색어(제목) : </label>
+      	<br>
+      	<input name="searchWord" type="text">
+      	<button type="submit" class="btn btn-secondary">검색</button>
       </form>
-	      <a th:if="${map.currentPage > 1}" th:href="@{/FAQAdmin?(currentPage=${map.currentPage-1},searchWord=${map.searchWord})}" class="btn btn-info">이전</a>
-	      <a th:if="${map.currentPage < map.lastPage}" th:href="@{/FAQAdmin?(currentPage=${map.currentPage+1},searchWord=${map.searchWord})}" class="btn btn-info">다음</a>
-      <div class="col-lg-6 col-md-6 mb-12" th:each="str:${map.list}">
+      <a th:if="${map.currentPage > 1}" th:href="@{/FAQAdmin?(currentPage=${map.currentPage-1},searchWord=${map.searchWord})}" class="btn btn-primary">이전</a>
+      <a th:if="${map.currentPage < map.lastPage}" th:href="@{/FAQAdmin?(currentPage=${map.currentPage+1},searchWord=${map.searchWord})}" class="btn btn-primary">다음</a>
+      
+      <div class="col-lg-8 col-md-6 mb-12" th:each="str:${map.list}">
 	      <div class="base">
-	          <div class="preface">
-	            <form action="/delFAQ" method="post">
+	          <div class="preface radius">           
+	            <form action="/nor/delFAQ" method="post">
 	            <input type="hidden" th:value="${str.faqNo}" name="qnaNo" id="qnaNo">
 	            <h5 th:text="${str.faqNo} + . + ' ' + ${str.faqTitle}"></h5>
-	            <button type="submit" class="btn btn-danger">삭제</button>
+	            <button type="submit" class="radius">삭제</button>
 	            </form>
 	          </div>
-	          <div class="content">
+	          <div class="content radius">
 	              <h5 th:text="${str.faqContent}"></h5>
 	          </div>
 	      </div>
-      </div>  
+      </div>
    </div>
+  </div>
    
    <!-- Footer -->
    <div th:fragment="copyright">
@@ -136,20 +131,21 @@
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script>
-		(function transitionsDemo() {
-		    var isExpanded = false;
-		    
-		    $(".preface").click(function(){
-		        var el = $(this).parent().find(".content");
-		        el.toggleClass("expanded");
-		    });
-		    
-		})();
-		
-		$("#faqAdminAdd").click(function(){
-			alert("FAQ 추가되었습니다.");
-		});
-	</script>
+   <script>
+   (function transitionsDemo() {
+       var isExpanded = false;
+       
+       $(".preface").click(function(){
+           var el = $(this).parent().find(".content");
+           el.toggleClass("expanded");
+       });
+       
+   })();
+   
+   $("#faqAdminAdd").click(function(){
+		alert("FAQ가 추가되었습니다.");
+   });
+   </script>
+
 </body>
 </html>

@@ -63,7 +63,7 @@
   <div th:fragment="nav">
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="/franchiseeIndex">PI-CA-BOO</a>
+      <a class="navbar-brand" href="/nor/franchiseeIndex">PI-CA-BOO</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -81,12 +81,6 @@
           <li class="nav-item">
             <a class="nav-link" href="/logout">logout</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
         </ul>
       </div>
     </div>
@@ -94,7 +88,7 @@
   </div>
   <!-- Page Content -->
   <div class="container-fluid center jumbotron my-4">
-	<h1>입력사항 수정시 정보가 초기화 되므로 신중한입력 바랍니다.</h1>
+	<h1>좌석 입력</h1>
    <div>
       <button type="button" class="type" value="pc">pc 추가</button>
       <button type="button" class="type" value="">pc 삭제</button>
@@ -156,14 +150,14 @@
 		// 좌석 리스트 넘김
 		$("#save").click(function() {
 			$.ajax({
-				url: "addFranchiseeSeat",
+				url: "/nor/addFranchiseeSeat",
 				method: "POST",
 				data: {"seatList": seatList},
 				success: function() {
-					console.log("success");
-					console.log("seatList", seatList);
+					//console.log("success");
+					//console.log("seatList", seatList);
 					alert("입력완료");
-					location.href="/detailFranchisee?franchiseeNo="+franchiseeNo; 
+					location.href="/nor/detailFranchisee?franchiseeNo="+franchiseeNo; 
 				},
 			});
 			
@@ -203,7 +197,7 @@
 			// 클릭한 버튼 타입 저장
 			$(".type").click(function(){
 				click = $(this).attr("value")
-				console.log(click) 
+				//console.log(click) 
 			})
 			
 			// 마우스 다운 여부
@@ -326,8 +320,8 @@
 			cols = $("#cols").val();
 			len = row*cols
 			//console.log("len: ", len);
-			console.log(row);
-			console.log(cols);
+			//console.log(row);
+			//console.log(cols);
 			pc = new Array();
 			seatList = new Array();
 			for(let i=len; i>0; i--) {

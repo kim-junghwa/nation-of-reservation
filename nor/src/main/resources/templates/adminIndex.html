@@ -6,7 +6,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Franchisee Index</title>
+  <title>Admin Index</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -22,93 +22,85 @@
   <div th:fragment="nav">
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="/adminIndex">PI-CA-BOO</a>
+      <a class="navbar-brand" href="/nor/adminIndex">PI-CA-BOO</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-        
           <!-- 멤버 이름 표시 -->
       	  <li class="nav-item">
             <span class="nav-link disabled text-light" th:inline="text">[[${session.memberName}]]님 환영합니다!</span>
           </li>
           <!-- 로그아웃 -->
           <li class="nav-item">
-            <a class="nav-link" href="/logout">logout</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="/nor/logout">logout</a>
           </li>
         </ul>
       </div>
     </div>
    </nav>
   </div>
-
   <!-- Page Content -->
-  <div class="container">	
+  
+  <div class="container">
     <!-- Page Features(메인 베너) -->
     <h3>관리 메뉴</h3>
-    <div th:fragment="main">
-	    <div class="row text-center">
+	  <div th:fragment="main">
+	   <div class="row text-center">
+	     <div class="col-lg-3 col-md-6 mb-4">
+	       <div class="card h-100">
+	         <img class="card-img-top" src="/nor/franchiseeImage/indexPic4.jpg" alt="">
+	         <div class="card-body">
+	           <h4 class="card-title">QnA Franchisee</h4>
+	           <p class="card-text">QnA Franchisee</p>
+	         </div>
+	         <div class="card-footer">
+	           <a href="/nor/QnAList" class="btn btn-info">QnA</a>
+	         </div>
+	       </div>	       
+	      </div>
+	      
 	      <div class="col-lg-3 col-md-6 mb-4">
-	        <div class="card h-100">
-	          <img class="card-img-top" src="/franchiseeImage/indexPic4.jpg" alt="">
-	          <div class="card-body">
-	            <h4 class="card-title">Q&A 점주</h4>
-	            <p class="card-text">Q&A 점주</p>
-	          </div>
-	          <div class="card-footer">
-	            <a href="/QnAList" class="btn btn-info">Q&A 점주</a>
-	          </div>
-	        </div>	        
-	       </div>
-	       
-	       <div class="col-lg-3 col-md-6 mb-4">
-	        <div class="card h-100">
-	          <img class="card-img-top" src="/franchiseeImage/indexPic4.jpg" alt="">
-	          <div class="card-body">
-	            <h4 class="card-title">FAQ</h4>
-	            <p class="card-text">FAQ</p>
-	          </div>
-	          <div class="card-footer">
-	            <a href="FAQAdmin" class="btn btn-info">FAQ</a>
-	          </div>  
-            </div>
-           </div>
-           
-          <div class="col-lg-3 col-md-6 mb-4">
-	        <div class="card h-100">
-	          <img class="card-img-top" src="/franchiseeImage/indexPic3.png" alt="">
-	          <div class="card-body">
-	            <h4 class="card-title">Q&A 고객</h4>
-	            <p class="card-text">Q&A 고객</p>
-	          </div>
-	          <div class="card-footer">
-	            <a href="/QnAListCustomer" class="btn btn-info">Q&A 고객</a>
-	          </div>
+	       <div class="card h-100">
+	         <img class="card-img-top" src="/nor/franchiseeImage/indexPic4.jpg" alt="">
+	         <div class="card-body">
+	           <h4 class="card-title">FAQ</h4>
+	           <p class="card-text">FAQ</p>
+	         </div>
+	         <div class="card-footer">
+	           <a href="/nor/FAQAdmin" class="btn btn-info">FAQ</a>
+	         </div>	         
 	        </div>
 	      </div>
+	      
 	      <div class="col-lg-3 col-md-6 mb-4">
+	       <div class="card h-100">
+	         <img class="card-img-top" src="/nor/franchiseeImage/indexPic4.jpg" alt="">
+	         <div class="card-body">
+	            <h4 class="card-title">QnA Customer</h4>
+				<p class="card-text">QnA Customer</p>
+	         </div>
+	         <div class="card-footer">
+	           <a href="/nor/QnAListCustomer" class="btn btn-info">QnA</a>
+	         </div>
+	   		</div>
+		 </div>
+		 
+		 <div class="col-lg-3 col-md-6 mb-4">
 	        <div class="card h-100">
 	          <img class="card-img-top" src="/franchiseeImage/indexPic3.png" alt="">
 	          <div class="card-body">
 	            <h4 class="card-title">가맹점 등록 대기</h4>
 	            <p class="card-text">가맹점 등록 대기</p>
-	          </div>
+	          </div> 
 	          <div class="card-footer">
-	            <a href="/unverifiedFranchiseeList" class="btn btn-info">가맹점 등록 대기</a>
+	            <a href="/nor/unverifiedFranchiseeList" class="btn btn-info">가맹점 등록 대기</a>
 	          </div>
 	        </div>
 	      </div>
-	      
-	        
-	    </div>
-    </div>
+	   </div>
+	 </div>
   </div>
   <!-- /.container -->
 

@@ -13,10 +13,10 @@ import org.apache.commons.net.ftp.FTPReply;
 import org.apache.commons.net.io.CopyStreamAdapter;
 public class FTPService {
    // 저장할 서버 주소
-    private static final String SERVER = "ahp7242.cdn3.cafe24.com";
-    private static final String USER = "ahp7242";
+    private static final String SERVER = "nextn1028.cdn3.cafe24.com";
+    private static final String USER = "nextn1028";
     private static final int PORT = 21;
-    private static final String PW = "z1x2c3v4!@";
+    private static final String PW = "galaxy1656!@";
     
     FTPClient ftp = null;
     

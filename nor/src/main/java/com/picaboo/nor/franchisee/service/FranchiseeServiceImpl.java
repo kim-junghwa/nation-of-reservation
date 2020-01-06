@@ -199,7 +199,7 @@ public class FranchiseeServiceImpl implements FranchiseeService{
 		System.out.println("foodPic: " + food);
 		foodInfo.put("food", food);
 		// 사진 경로
-		String uploadPath = "http://ahp7242.cdn3.cafe24.com/food/";
+		String uploadPath = "http://nextn1028.cdn3.cafe24.com/food/";
 		foodInfo.put("uploadPath", uploadPath);
 		
 		return foodInfo;
@@ -285,7 +285,7 @@ public class FranchiseeServiceImpl implements FranchiseeService{
 		List<FoodPic> foodPicList = franchiseeMapper.selectFoodPicList(franchiseeNo);
 		franchiseeFood.put("foodPicList", foodPicList);
 		
-		String uploadPath = "http://ahp7242.cdn3.cafe24.com/food/";
+		String uploadPath = "http://nextn1028.cdn3.cafe24.com/food/";
 		franchiseeFood.put("uploadPath", uploadPath);
 		
 		franchiseeFood.put("franchiseeNo", franchiseeNo);
@@ -409,7 +409,7 @@ public class FranchiseeServiceImpl implements FranchiseeService{
 		// 썸네일 사진과 경로를 가지는 맵 리턴
 		Map<String, Object> thumbnailInfo = new HashMap<String, Object>();
 		// 저장 경로
-		String uploadPath = "http://ahp7242.cdn3.cafe24.com/franchisee/";
+		String uploadPath = "http://nextn1028.cdn3.cafe24.com/franchisee/";
 		thumbnailInfo.put("uploadPath", uploadPath);
 		// 썸네일 사진
 		List<FranchiseePic> thumbnailList = franchiseeMapper.selectFranchiseeThumbnail();
@@ -640,7 +640,7 @@ public class FranchiseeServiceImpl implements FranchiseeService{
 		List<FranchiseePic> franchisePicList = franchiseeMapper.selectFranchiseePic(franchiseeNo);
 		System.out.println("Service franchisePicList: " + franchisePicList);
 		// 저장 경로
-		String uploadPath = "http://ahp7242.cdn3.cafe24.com/franchisee/";
+		String uploadPath = "http://nextn1028.cdn3.cafe24.com/franchisee/";
 		
 		franchiseeInfo.put("franchisePicList", franchisePicList);
 		franchiseeInfo.put("uploadPath", uploadPath);

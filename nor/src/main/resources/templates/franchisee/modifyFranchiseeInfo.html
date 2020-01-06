@@ -6,7 +6,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Add Franchisee Info</title>
+  <title>Modify Franchisee Info</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -22,7 +22,7 @@
   <div th:fragment="nav">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="/franchiseeIndex">PI-CA-BOO</a>
+      <a class="navbar-brand" href="/nor/franchiseeIndex">PI-CA-BOO</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -32,22 +32,12 @@
       	  <li class="nav-item">
             <label class="nav-link" th:text="${memberName}"></label>
           </li>
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/addFranchisee" >addFranchisee</a>
-          </li>
           <!-- 로그아웃 -->
           <li class="nav-item">
-            <a class="nav-link" href="/logout">logout</a>
+            <a class="nav-link" href="/nor/logout">logout</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/#">modify</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="/nor/mypageFranchisee">MyPage</a>
           </li>
         </ul>
       </div>
@@ -56,8 +46,8 @@
    </div>
   <!-- Page Content -->
   <div class="container jumbotron my-4">
-  	<h4>가맹점 상세 정보 수정	</h4>
-		<form action="/modifyFranchiseeInfo" method="post" enctype="multipart/form-data">
+  	<h4>가맹점 상세 정보 수정</h4>
+		<form action="/nor/modifyFranchiseeInfo" method="post" enctype="multipart/form-data">
 			<div>
 				<input type="hidden" th:value="${franchiseeNo}" name="franchiseeNo">
 			</div>
@@ -89,7 +79,6 @@
 			<div class="row">
 	      	  <div th:each="pic : ${franchiseeInfo.franchisePicList}">
 		        <div>
-		        
             	  <div>
             	  	<img th:src="${franchiseeInfo.uploadPath}+ '/' +${pic.fileName}" th:alt-title="${pic.originName}" width="200" height="200">
             	  </div>
@@ -124,16 +113,16 @@
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script>
-	  $(document).ready(function(){
-		    //전체 선택 해제 버튼 클릭
-		    $("#checkAll").click(function(){
-		 		if($("input[name=removeFileList]").is(":checked")) {
-		 			$("input[name=removeFileList]").prop("checked", false);
-		 		}else {
-		 			$("input[name=removeFileList]").prop("checked", true);
-		 		}
-		    });
-		});
+  	$(document).ready(function(){
+	    //전체 선택 해제 버튼 클릭
+	    $("#checkAll").click(function(){
+	 		if($("input[name=removeFileList]").is(":checked")) {
+	 			$("input[name=removeFileList]").prop("checked", false);
+	 		}else {
+	 			$("input[name=removeFileList]").prop("checked", true);
+	 		}
+	    });
+	});
   </script>
 </body>
 

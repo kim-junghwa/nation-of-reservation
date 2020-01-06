@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Franchisee Index</title>
+  <title>QnA Franchisee</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -43,7 +43,7 @@
   <div th:fragment="nav">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="/franchiseeIndex">PI-CA-BOO</a>
+      <a class="navbar-brand" href="/nor/franchiseeIndex">PI-CA-BOO</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -53,19 +53,12 @@
            <li class="nav-item">
             <label class="nav-link" th:text="${memberName}"></label>
           </li>
-       
           <!-- 로그아웃 -->
           <li class="nav-item">
-            <a class="nav-link" href="/logout">logout</a>
+            <a class="nav-link" href="/nor/logout">logout</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/mypageFranchisee">MyPage</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="/nor/mypageFranchise">MyPage</a>
           </li>
         </ul>
       </div>
@@ -75,8 +68,8 @@
   
   <!-- /.container -->
   <div class="container jumbotron my-4">
-   <h4>가맹점 등록</h4>
-		<form action="/QnAFranchisee" class="was-validated" method="post" >
+   <h4>QnA 등록</h4>
+		<form action="/nor/QnAFranchisee" class="was-validated" method="post" >
 		   <div class="form-group">
 		   	<label>QnA_Category</label>
 			<select name="qnaType" class="form-control" id="qnaType" required>
@@ -103,16 +96,14 @@
 				<div class="valid-feedback">입력완료.</div>
 				<div class="invalid-feedback">문의 내용을 입력하여주세요.</div>
 			</div>	
-			
 			<div class="form-group form-check">
-				<label class="form-check-label"> <input
-					class="form-check-input" type="checkbox" name="remember" required>
-					답변 메일 수신을 동의하십니까?
+				<label class="form-check-label"> 
+					<input class="form-check-input" type="checkbox" name="remember" required>
+						답변 메일 수신을 동의하십니까?
 					<div class="valid-feedback">동의</div>
 					<div class="invalid-feedback">수신 동의 필요</div>
 				</label>
 			</div>
-			
 			<button id="addButton" type="submit" class="btn btn-primary">입력</button>
 		</form>
 	</div>
@@ -126,12 +117,10 @@
        </footer>
    </div>
 
-  <script>
-	$("#addButton").click(function(){
-	 alert("문의가 정상적으로 등록되었습니다.");
-	});
-  </script>
-  
+	<script>
+		$("#addButton").click(function(){
+		 alert("문의가 정상적으로 등록되었습니다.");
+		});
+	</script>
 </body>
-
 </html>

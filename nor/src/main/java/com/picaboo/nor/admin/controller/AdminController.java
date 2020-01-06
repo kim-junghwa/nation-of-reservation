@@ -23,7 +23,7 @@ public class AdminController {
 	// 가맹점 등록 완료
 	@PostMapping("/addFranchisee")
     public String addFranchisee(@RequestParam(value="franchiseeNo") String franchiseeNo) {
-		System.out.println("post요청"+franchiseeNo);
+		//System.out.println("post요청"+franchiseeNo);
 		adminService.addFranchisee(franchiseeNo);
         return "redirect:/unverifiedFranchiseeList";
 	}
@@ -49,7 +49,7 @@ public class AdminController {
 	@PostMapping("/delFAQ")
     public String delFAQ(HttpSession session,@RequestParam(value="qnaNo") int faqNo ) {
 		adminService.delFAQ(faqNo);
-		System.out.println("faqNo"+faqNo);
+		//System.out.println("faqNo"+faqNo);
         return "redirect:/FAQAdmin";
 	}
 			
@@ -82,7 +82,7 @@ public class AdminController {
 	//QnA 답변 post요청 고객쪽0
 	@PostMapping("/QnAUpdateCustomer")
 	public String modifyQnACustomer(AdminQnA adminQnA) {
-		System.out.println("수정후 " + adminQnA);
+		//System.out.println("수정후 " + adminQnA);
 		adminService.modifyQnACustomer(adminQnA);
 		return "redirect:/QnAListCustomer";
 	}
@@ -127,7 +127,7 @@ public class AdminController {
 	//QnA 답변 post요청
 	@PostMapping("/QnAUpdate")
 	public String modifyQnA(AdminQnA adminQnA) {
-		System.out.println("수정후 " + adminQnA);
+		//System.out.println("수정후 " + adminQnA);
 		adminService.modifyQnA(adminQnA);
 		return "redirect:/QnAListCustomer";
 	}
@@ -180,7 +180,7 @@ public class AdminController {
 	// FeedBack 등록 페이지 요청
 	@GetMapping("/addFeedBack")
 	public String addFeedBack() {
-		System.out.println("feedback get요청");
+		//System.out.println("feedback get요청");
 		return "admin/addFeedBack";
 	}
 	
@@ -188,27 +188,27 @@ public class AdminController {
 	@PostMapping("/addFeedBack")
 	public String addFeedBack(FeedBack feedBack) {
 		adminService.addFeedBack(feedBack);
-		System.out.println("feedback 등록완료");
+		//System.out.println("feedback 등록완료");
 		return "redirect:/getFeedBackBoardList";
 	}
 	
 	// FeedBack 리스트 페이지
 	@GetMapping("/getFeedBackBoardList")
 	public String getFeedBackBoardList(Model model, @RequestParam(value="currentPage", defaultValue="1") int currentPage){
-		// System.out.println("currentPage : " + currentPage);
+		// //System.out.println("currentPage : " + currentPage);
 		int rowPerPage = 10;
 		Map<String, Object> map = adminService.getFeedBackBoardList(currentPage, rowPerPage);
 		model.addAttribute("map", map);
-		// System.out.println("map : " + map);
-		// System.out.println("map list: " + map.get("list"));
+		// //System.out.println("map : " + map);
+		// //System.out.println("map list: " + map.get("list"));
 		return "admin/getFeedBackBoardList";
 	}
 	
 	// FeedBack 상세 페이지 요청
 	@GetMapping("/detailFeedBack")
 	public String detailFeedBack(Model model, @RequestParam(value="feedBackBoardNo") int feedBackBoardNo) {	
-		System.out.println("QnADetail Get 요청");
-		System.out.println("no" + feedBackBoardNo);
+		//System.out.println("QnADetail Get 요청");
+		//System.out.println("no" + feedBackBoardNo);
 		FeedBack feedBack = adminService.getFeedBackBoardListOne(feedBackBoardNo);
 		
 		model.addAttribute("feedBack", feedBack);

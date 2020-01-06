@@ -6,7 +6,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>singupType</title>
+  <title>modifyMembership</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -36,12 +36,12 @@
 </style>
 <body>
 <div id="logo" >
-	<img src="/loginimage/logo.jpg">
+	<img src="/nor/loginimage/logo.jpg">
 </div>
 	<div th:include="/part/customerNav::afternav" class="gradation"></div>
 
 	<div class="container">
-		<form action="/modifyMembership" method="post">
+		<form action="/nor/modifyMembership" method="post">
 			<table class="table table-boardered">
 				<tr>
 					<th>아이디</th>
@@ -64,21 +64,20 @@
 					<td><input type="text" name="customerPhone" th:placeholder="${membership.customerPhone}" th:value="${membership.customerPhone}"></td>
 				</tr>
 				<tr>
-				<th>주소</th>
-				<td style="height:50px;">
-					<div>
-						<input type="text" id="postcode" name="postcode" th:placeholder="${membership.postcode}" th:value="${membership.postcode}">
-						<button type="button" onclick="execDaumPostcode()" value="우편번호 찾기" class="btn-primary round">우편번호</button><br>
-						<input type="text" id="address" name="address" th:placeholder="${membership.roadAddress}" th:value="${membership.roadAddress}">
-						<input type="text" id="detailAddress" name="detailAddress" th:placeholder="${membership.detailAddress}" th:value="${membership.detailAddress}">
-						<input type="text" id="extraAddress" name="extraAddress" hidden="">
-						<input type="text" id="roadAddress" name="roadAddress" hidden="" th:value="${membership.roadAddress}">
-						<input type="text" id="jibunAddress" name="jibunAddress" hidden="" >
-					</div>
-				</td>														
-			</tr>
+					<th>주소</th>
+					<td style="height:50px;">
+						<div>
+							<input type="text" id="postcode" name="postcode" th:placeholder="${membership.postcode}" th:value="${membership.postcode}">
+							<button type="button" onclick="execDaumPostcode()" value="우편번호 찾기" class="btn-primary round">우편번호</button><br>
+							<input type="text" id="address" name="address" th:placeholder="${membership.roadAddress}" th:value="${membership.roadAddress}">
+							<input type="text" id="detailAddress" name="detailAddress" th:placeholder="${membership.detailAddress}" th:value="${membership.detailAddress}">
+							<input type="text" id="extraAddress" name="extraAddress" hidden="">
+							<input type="text" id="roadAddress" name="roadAddress" hidden="" th:value="${membership.roadAddress}">
+							<input type="text" id="jibunAddress" name="jibunAddress" hidden="" >
+						</div>
+					</td>
+				</tr>
 			</table>
-			<hr>
 			<button type="submit" class="btn btn-primary">수정</button>
 		</form>
 	</div>
@@ -132,13 +131,12 @@
                 // 커서를 상세주소 필드로 이동한다.
                 document.getElementById("detailAddress").focus();
                 //console.log(data);
-                console.log(data.jibunAddress);
-                console.log(data.roadAddress);
+                //console.log(data.jibunAddress);
+                //console.log(data.roadAddress);
                 $("#roadAddress").val(data.roadAddress)
                 $("#jibunAddress").val(data.jibunAddress)
             }
         }).open();
-    }
-    
-</script>		
+    }  
+</script>
 </html>

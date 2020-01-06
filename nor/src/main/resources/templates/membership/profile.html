@@ -6,9 +6,11 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>singupType</title>
+<title>Profile</title>
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="css/heroic-features.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <style>
 	#logo{
@@ -28,15 +30,63 @@
     .round{
     	border-radius: 2px;
     }
+    
+	.size{
+		height: 300px;
+		width: 300px;
+		display: inline-block;
+	}
+	
+	.center{
+		text-align: center;
+		align-content: center;
+	}
+	
+	
+	#info{
+		float: left;
+	}
+	
+	#button {
+		float: right;
+		border-radius:50px;
+		background-color: rgba(255,255,255,0.5);
+	}
 </style>
 <body>
-<div id="logo" >
-	<img src="/loginimage/logo.jpg">
+	<div id="logo" >
+	<img src="/nor/loginimage/logo.jpg">
 </div>
 	<div th:include="/part/customerNav::afternav" class="gradation"></div>
 
 	<div class="container">
-		<br><h2>내 정보</h2><br>
+		<div id="divToggle" style="display: none;">
+			<div class="row">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-8 center">
+					<br>
+					<h2>총 주문금액</h2>
+					<h3 th:text="${totalPrice}+원"></h3>
+				</div>
+				<div class="col-sm-2"></div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-sm-5 center">
+					<div class="size">
+						<h4>pc방</h4>
+						<canvas id="mySeatChart"></canvas>
+					</div>
+				</div>
+				<div class="col-sm-2"></div>
+				<div class="col-sm-5 center" id="food">
+					
+				</div>
+			</div>
+		</div>
+		<br>
+		<h2 id="info">내 정보</h2><button type="button" id="button">CHART</button>
+		<br>
 		<table class="table table-boardered">
 			<tr>
 				<th>아이디</th>
@@ -77,7 +127,123 @@
 		<a th:href="@{/removeMembership(customerId=${membership.customerId})}" class="btn btn-danger">탈퇴</a>	
 		<hr>
 	</div>
-
 	<div th:include="/part/customerNav::copyright" class="gradation"></div>
 </body>
+<script>
+let dynamicColors = function() {
+	var r = Math.floor(Math.random() * 255);
+	var g = Math.floor(Math.random() * 255);
+	var b = Math.floor(Math.random() * 255);
+	return "rgba(" + r + "," + g + "," + b + ",0.8)";
+}
+
+let seatper = new Array();
+let seatcolorList = new Array();
+let seatnameList = new Array();
+let franchiseeNoList = new Array();
+
+
+var seatctx = document.getElementById('mySeatChart').getContext('2d');
+
+
+var seatChart = new Chart(seatctx, {
+	type : 'pie',
+	
+	data : {
+		labels : seatnameList,
+		
+		datasets : [ {
+			label : franchiseeNoList,
+			data : seatper,
+			backgroundColor : seatcolorList,
+			borderColor : seatcolorList
+		} ]
+	},
+	options: {
+           maintainAspectRatio: false, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
+           'onClick' : function(evt, item) {
+				if (item[0] == null) {
+					return;
+				}
+				let foodper = new Array();
+				let foodcolorList = new Array();
+				let foodnameList = new Array();
+				$("#food").empty()
+				$("#food").append("<div class='size'><h4>상품</h4><canvas id='myFoodChart'></canvas></size>")
+				var foodctx = document.getElementById('myFoodChart')
+						.getContext('2d');
+				//console.log("클릭", item[0]._model.label)
+				let franchiseeNo = item[0]._model.label
+
+				$.ajax({
+					url : "/nor/getMyFoodReservation",
+					method : "POST",
+					data : {
+						"franchiseeNo" : franchiseeNo
+					},
+					success : function(json) {
+
+						//console.log("success")
+						//console.log("json",json)
+
+						$(json).each(function(index, item) {
+							let sum = item.sum
+							let name = item.foodName
+							foodper.push(sum)
+							foodcolorList.push(dynamicColors())
+							foodnameList.push(name)
+						})
+
+						var foodChart = new Chart(foodctx, {
+							type : 'pie',
+
+							data : {
+								labels : foodnameList,
+
+								datasets : [ {
+									label : foodnameList,
+									data : foodper,
+									backgroundColor : foodcolorList,
+									borderColor : foodcolorList
+								} ]
+							},
+							options : {
+								maintainAspectRatio : false, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
+							},
+							
+						})
+						foodChart.update()
+					}
+				})
+			}
+		}
+	})
+
+	$(document).ready(function() {
+		console.log("출력")
+		$.ajax({
+			url : "/nor/getMySeatReservation",
+			method : "POST",
+			success : function(json) {
+				//console.log("success")
+				//console.log("json",json)
+				$(json).each(function(index, item) {
+					let count = item.count
+					let name = item.franchiseeName
+					let no = item.franchiseeNo
+					seatper.push(count)
+					seatcolorList.push(dynamicColors())
+					seatnameList.push(name)
+					franchiseeNoList.push(no)
+				})
+				seatChart.update()
+			}
+		})
+
+		$("#button").click(function (){ 
+			$("#divToggle").slideToggle(2000)
+		});
+
+	})
+</script>
 </html>

@@ -22,26 +22,22 @@
   <div th:fragment="nav">
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="/franchiseeIndex">PI-CA-BOO</a>
+      <a class="navbar-brand" href="/nor/franchiseeIndex">PI-CA-BOO</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-        
           <!-- 멤버 이름 표시 -->
       	  <li class="nav-item">
             <span class="nav-link disabled text-light" th:inline="text">[[${session.memberName}]]님 환영합니다!</span>
           </li>
           <!-- 로그아웃 -->
           <li class="nav-item">
-            <a class="nav-link" href="/logout">logout</a>
-          </li>
-         <li class="nav-item">
-            <a class="nav-link" href="/mypageFranchisee">MyPage</a>
+            <a class="nav-link" href="/nor/logout">logout</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="/nor/mypageFranchisee">MyPage</a>
           </li>
         </ul>
       </div>
@@ -55,14 +51,13 @@
     <div th:fragment="event">
     	<!-- 가맹점 목록 -->
 	    <header class="jumbotron my-4">
-	    <button id="admin" onclick="window.open('adminIndex','window_name','width=430,height=500,location=no,status=no,scrollbars=yes');">어드민페이지 임시</button>
 	    <h3>가맹점 리스트</h3>
 	    <div class="row text-center">
 	      <div class="col-lg-3 col-md-6 mb-4" th:each="list:${franchiseeList}">
 	        <div class="card h-100">
 	          <img class="card-img-top" th:each="thumbnail : ${thumbnailInfo.thumbnailList}" th:if="${thumbnail.franchiseeNo} == ${list.franchiseeNo}" th:src="${thumbnailInfo.uploadPath} + ${thumbnail.fileName}" alt="">
 	          <div class="card-body">
-	            <h4 class="card-title" th:text="${list.franchiseeName}">FranchiseeName</h4>
+	            <h4 class="card-title" th:text="${list.franchiseeName}"></h4>
 	          </div>
 	          <div class="card-footer">
 	            <a href="#" class="btn btn-primary" th:href="@{/detailFranchisee?(franchiseeNo=${list.franchiseeNo})}" th:text="info">info</a>
@@ -80,13 +75,13 @@
 	    <div class="row text-center">
 	      <div class="col-lg-3 col-md-6 mb-4">
 	        <div class="card h-100">
-	          <img class="card-img-top" src="/franchiseeImage/indexPic4.jpg" alt="">
+	          <img class="card-img-top" src="/nor/franchiseeImage/Franchisee.jpg" alt="">
 	          <div class="card-body">
-	            <h4 class="card-title">addFranchisee</h4>
+	            <h4 class="card-title">가게 등록</h4>
 	            <p class="card-text">addFranchisee</p>
 	          </div>
 	          <div class="card-footer">
-	            <a href="/addFranchisee" class="btn btn-primary">addFranchisee</a>
+	            <a href="/nor/addFranchisee" class="btn btn-primary">addFranchisee</a>
 	          </div>
 	        </div>
 	      </div>
@@ -94,43 +89,42 @@
 		  <!-- FAQ 버튼 -->
 	      <div class="col-lg-3 col-md-6 mb-4">
 	        <div class="card h-100">
-	          <img class="card-img-top" src="/franchiseeImage/indexPic2.png" alt="">
+	          <img class="card-img-top" src="/nor/franchiseeImage/FAQ.jpg" alt="">
 	          <div class="card-body">
-	            <h4 class="card-title">FAQFranchisee</h4>
+	            <h4 class="card-title">자주하는질문</h4>
 	            <p class="card-text">FAQFranchisee</p>
 	          </div>
 	          <div class="card-footer">
-	            <a href="/FAQFranchisee" class="btn btn-primary">FAQFranchisee</a>
+	            <a href="/nor/FAQFranchisee" class="btn btn-primary">FAQFranchisee</a>
 	          </div>
 	        </div>
 	      </div>
 	
 	      <div class="col-lg-3 col-md-6 mb-4">
 	        <div class="card h-100">
-	          <img class="card-img-top" src="/franchiseeImage/indexPic3.png" alt="">
+	          <img class="card-img-top" src="/nor/franchiseeImage/Statistics.jpg" alt="">
 	          <div class="card-body">
 	            <h4 class="card-title">통계</h4>
 	            <p class="card-text">StatisticsFranchisee</p>
 	          </div>
 	          <div class="card-footer">
-	            <a href="/foodStatement" class="btn btn-primary">StatisticsFranchisee</a>
+	            <a href="/nor/foodStatement" class="btn btn-primary">StatisticsFranchisee</a>
 	          </div>
 	        </div>
 	      </div>
 	
 	      <div class="col-lg-3 col-md-6 mb-4">
-           <div class="card h-100">
-             <img class="card-img-top" src="/franchiseeImage/indexPic3.png" alt="">
-             <div class="card-body">
-               <h4 class="card-title">QnAFranchisee</h4>
-               <p class="card-text">QnAFranchisee</p>
-             </div>
-             <div class="card-footer">
-               <a href="/QnAFranchisee" class="btn btn-primary">QnAFranchisee</a>
-             </div>
-           </div>
-         </div>
-	      
+	        <div class="card h-100">
+	          <img class="card-img-top" src="/nor/franchiseeImage/QnA.jpg" alt="">
+	          <div class="card-body">
+	            <h4 class="card-title">문의하기</h4>
+	            <p class="card-text">QnAFranchisee</p>
+	          </div>
+	          <div class="card-footer">
+	            <a href="/nor/QnAFranchisee" class="btn btn-primary">QnAFranchisee</a>
+	          </div>
+	        </div>
+	      </div>      
 	    </div>
 	 </div>
     <!-- /.row -->

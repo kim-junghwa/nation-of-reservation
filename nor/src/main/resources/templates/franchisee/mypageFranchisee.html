@@ -2,43 +2,38 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <style>
-#logo {
-	text-align: center;
-	height: 170px;
-}
-
-.gradation {
-	background: linear-gradient(to right bottom, #B96BC6, #FE5196);
-}
-
-.zoom {
-	transition: transform .2s; /* Animation */
-	margin: 0 auto;
-}
-
-.zoom:hover {
-	transform: scale(1.03);
-	box-shadow: 10px 10px 5px grey;
-	/* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-}
-
-#add{
-	text-align:right;
-}
+	#logo {
+		text-align: center;
+		height: 170px;
+	}
+	.gradation {
+		background: linear-gradient(to right bottom, #B96BC6, #FE5196);
+	}
+	.zoom {
+		transition: transform .2s; /* Animation */
+		margin: 0 auto;
+	}
+	.zoom:hover {
+		transform: scale(1.03);
+		box-shadow: 10px 10px 5px grey;
+		/* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+	}
+	#add{
+		text-align:right;
+	}
 </style>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Franchisee Index</title>
+  <title>Franchisee MY PAGE</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
   <link href="css/heroic-features.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -47,36 +42,33 @@
   <div th:fragment="nav">
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="/franchiseeIndex">PI-CA-BOO</a>
+      <a class="navbar-brand" href="/nor/franchiseeIndex">PI-CA-BOO</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-        
+          
+          <li class="nav-item">
+            <label class="nav-link" th:text="${memberName}"></label>
+          </li>   
           <!-- 로그아웃 -->
           <li class="nav-item">
-            <a class="nav-link" href="/logout">logout</a>
+            <a class="nav-link" href="/nor/logout">logout</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/mypageFranchisee">MyPage</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="/nor/mypageFranchisee">MyPage</a>
           </li>
         </ul>
       </div>
     </div>
    </nav>
   </div>
-  
-  <!-- 수정가능 테이블 -->
-  <div class="container">
-  	<div class="low">
-	<form action="/modifyFranchiseeOwner" method="post">
+
+<!-- 수정가능 테이블 -->
+<div class="container">
+	<div class="low">
+	<form action="/nor/modifyFranchiseeOwner" method="post">
 		<table class="table table-boardered">
 			<tr>
 				<th>아이디</th>
@@ -123,9 +115,9 @@
 		</div>
 		<hr>
 	</div>
-	    
     </header>
-  </div>
+</div>
+
   <!-- Footer -->
   <div th:fragment="copyright">
 	  <footer class="py-5 bg-dark">
@@ -135,24 +127,22 @@
 	    <!-- /.container -->
 	  </footer>
   </div>
+  
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script>
 	$("#modifyFranchiseeMypage").click(function(){
-	 alert("수정이 완료되었습니다.");
+		alert("수정이 완료되었습니다.");
 	});
 	
 	$(document).ready(function(){
 		$(".zoom").on("click",function(){
 			let qnaNo = $(this).children().children("#qnaNo").text()
-			console.log(qnaNo)
-			$(location).attr('href',"/QnAFranchiseeDetail?qnaNo="+qnaNo);
+			//console.log(qnaNo)
+			$(location).attr('href',"/nor/QnAFranchiseeDetail?qnaNo="+qnaNo);
 		})
 	})
-	
   </script>
-	
 </body>
-
 </html>

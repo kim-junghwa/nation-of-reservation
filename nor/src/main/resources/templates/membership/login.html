@@ -12,13 +12,13 @@
 <!-- 네이버 로그인 스크립트 -->
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-</head>
 <title>LOGIN</title>
 <style>
 	.size{
 		height:50px;
 		width:255px;
 	}
+	
 	#logo{
 		text-align: center;
 		height:170px;
@@ -31,7 +31,7 @@
 </head>
 <body>
 <div id="logo" >
-	<img src="/loginimage/logo.jpg">
+	<img src="/nor/loginimage/logo.jpg">
 </div>
 	<!-- Navigation(상단메뉴) -->
 	<div th:include="/part/customerNav::befornav" class="gradation"></div>
@@ -42,7 +42,7 @@
 				<h2 class="card-title text-center" style="color: #113366;">로그인 폼</h2>
 			</div>
 			<div class="card-body">
-				<form class="form-signin" method="POST" onSubmit="logincall();return false" action="/login">
+				<form class="form-signin" method="POST" onSubmit="logincall();return false" action="/nor/login">
 					<h5 class="form-signin-heading">로그인 정보를 입력하세요</h5>
 					<label for="inputEmail" class="sr-only">Your ID</label> 
 					<input type="text" id="uid" class="form-control" placeholder="Your ID" name="customerId" required autofocus><BR> 
@@ -50,7 +50,7 @@
 					<input type="password" id="upw" class="form-control" placeholder="Password" name="customerPw" required><br>
 					<div class="checkbox"></div>
 					<button id="btn-Yes" class="btn btn-primary" type="submit">로 그 인</button>
-					<a href="/signupType" class="btn btn-primary">회원가입</a>
+					<a href="/nor/signupType" class="btn btn-primary">회원가입</a>
 				</form>
 			</div>
 		</div>
@@ -60,9 +60,9 @@
 	<div class="card-title text-center">
 		<div id="naver_id_login"></div>
 		<div style="height: 10px;"></div>
-		<input type="image" src="/loginimage/kakao.png" class="snslogin size">
+		<input type="image" src="/nor/loginimage/kakao.png" class="snslogin size">
 		<div style="height: 4px;"></div>
-		<input type="image" src="/loginimage/google.png" class="snslogin size">
+		<input type="image" src="/nor/loginimage/google.png" class="snslogin size">
 	</div>
 
 	<!-- 중간 여백 -->
@@ -79,10 +79,10 @@
 	})
 </script>
 <script type="text/javascript">
-	var naver_id_login = new naver_id_login("S1ktDM7LfYru6fV1INP1", "http://localhost/callback");
+	var naver_id_login = new naver_id_login("S1ktDM7LfYru6fV1INP1", "http://ahp7242.cafe24.com/nor/callback");
 	var state = naver_id_login.getUniqState();
 	naver_id_login.setButton("green", 2.5, 55);
-	naver_id_login.setDomain("http://localhost/customerIndex");
+	naver_id_login.setDomain("http://ahp7242.cafe24.com/customerIndex");
 	naver_id_login.setState(state);
 	//naver_id_login.setPopup();
 	naver_id_login.init_naver_id_login();

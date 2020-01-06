@@ -10,50 +10,49 @@
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <title>CUSTOMER</title>
-<link rel="stylesheet" href="/css/menumodal.css">
-<link rel="stylesheet" href="/css/seatmodal.css">
-<link rel="stylesheet" href="/css/thumnailmodal.css">
+<link rel="stylesheet" href="/nor/css/menumodal.css">
+<link rel="stylesheet" href="/nor/css/seatmodal.css">
+<link rel="stylesheet" href="/nor/css/thumnailmodal.css">
 <style>
-#logo {
-	padding-top:54px;
-	text-align: center;
-	height:226px;
-}
-.gradation {
-	background: linear-gradient(to right bottom, #B96BC6, #FE5196);
-}
-.box {
-	height: 50px;
-	width: 50px;
-	text-align: center;
-	border: 1px solid black;
-	border-radius: 5px;
-}
-.center {
-	width: 100%;
-	text-align: center;
-}
-#seat {
-	margin-left: auto;
-	margin-right: auto;
-}
-#seat div {
-	background-color: #EAEAEA;
-}
-.close {
-	font-size: 15px;
-}
+	#logo {
+		padding-top:54px;
+		text-align: center;
+		height:226px;
+	}
+	.gradation {
+		background: linear-gradient(to right bottom, #B96BC6, #FE5196);
+	}
+	.box {
+		height: 50px;
+		width: 50px;
+		text-align: center;
+		border: 1px solid black;
+		border-radius: 5px;
+	}
+	.center {
+		width: 100%;
+		text-align: center;
+	}
+	#seat {
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#seat div {
+		background-color: #EAEAEA;
+	}
+	.close {
+		font-size: 15px;
+	}
 </style>
 </head>
 <body>
 <div id="logo" >		
-	<img src="/loginimage/logo.jpg">
+	<img src="/nor/loginimage/logo.jpg">
 </div>
 	<div th:include="/part/customerNav::afternav" class="gradation"></div>
 	<div class="container center">
-		<h1>CustomerSeat</h1>
-		<div style="height:50px" th:text="${franchisee.franchiseeName}"></div>
-
+		<div style="height:50px" ></div>
+			<h2 th:text="${franchisee.franchiseeName}"></h2>
 		<!-- 이미지 클릭시 모달창 오픈 -->
 		<div class="picmodal_link">
 			<!-- 썸네일  -->
@@ -136,6 +135,7 @@
 		좌석표<br>
 		<table id="seat"></table>
 		<button type="button" id="menumodal_opne_btn" class="btn btn-primary">예약</button>
+		<div><br></div>
 	</div>
 	<div th:include="/part/customerNav::copyright" class="gradation"></div>
 </body>
@@ -149,7 +149,7 @@
 	let category = "all";
 	let menu = [];
 	$.ajax({
-		url:"/getFoodList",
+		url:"/nor/getFoodList",
 		method:"POST",
 		data:{"franchiseeNo":franchiseeNo},
 		success:function(json){
@@ -165,14 +165,14 @@ let thumPic = "";
 let thumBic	= "";
 $(picList).each(function(index,item){
 	//console.log(item)
-	thumPic += "<img class='thumbnail round' src='http://ahp7242.cdn3.cafe24.com/franchisee/";
+	thumPic += "<img class='thumbnail round' src='http://nextn1028.cdn3.cafe24.com/franchisee/";
 	thumPic += item.fileName
 	thumPic += "'>"
 	
 	if(index == 0){
-		thumBic += "<div class='carousel-item active'> <img src='http://ahp7242.cdn3.cafe24.com/franchisee/";
+		thumBic += "<div class='carousel-item active'> <img src='http://nextn1028.cdn3.cafe24.com/franchisee/";
 	} else {
-		thumBic += "<div class='carousel-item'> <img src='http://ahp7242.cdn3.cafe24.com/franchisee/";
+		thumBic += "<div class='carousel-item'> <img src='http://nextn1028.cdn3.cafe24.com/franchisee/";
 	}
 	
 	thumBic += item.fileName;
@@ -214,46 +214,138 @@ $(document).ready(function(){
 		html += "</tr>"
 	}
 	$("#seat").html(html);
-	console.log(menu)
+	//console.log(menu)
+	$("#menu").empty()
+	let menuhtml = "<table border='1'>";
+	menuhtml += "<tr>";
+	$(menu).each(function(index,item){
+		//console.log(menu)
+		menuhtml += "<td class='item'>";
+		menuhtml += "<img src='http://nextn1028.cdn3.cafe24.com/food/";
+		menuhtml += item.fileName;
+		menuhtml += "' class='image' id='No"+item.foodNo+"' alt='";
+		menuhtml += item.foodName;
+		menuhtml += "'>";
+		menuhtml += "<div>"+item.foodName+"</div>";
+		menuhtml += "<div class='price'><input type='number' value='1' min='1' id='count'><p id='price'>";
+		menuhtml += item.foodPrice;
+		menuhtml += "원</p></div>";
+		menuhtml += "</td>";
+		if((index+1)%5 == 0){
+			menuhtml += "</tr><tr>";
+		}
+	})
+	menuhtml += "</tr>";
+	menuhtml += "</table>";
+	$("#menu").append(menuhtml)
+	$('.image').on('click',function() {
+		//console.log("image click")
+		let $no = $(this).attr("id")
+		let $name = $(this).attr("alt")
+		let $price = $(this).next().find("#price").text()
+		let $count = Number($(this).next().find("#count").val())
+		$price = Number($price.substr(0,($price.length-1)))
+		//console.log("가격 :"+$price)
+		//console.log("수량 :"+$count)
+		//console.log("이미지 :"+$name)
+		$no = $no.substr(2)
+		//console.log("번호:",$no)
+		
+		$("#totalTable tr").each(function(index,item){
+			if($(item).attr("id") == ("food"+$no)){
+				//console.log("있음")
+				//console.log("count 값",$(item).find("#count"+$no).text())
+				let newCount = Number($(item).find("#count"+$no).text())
+				let newTotal = (newCount + $count)*$price
+				$(item).find("#count"+$no).text(newCount + $count)
+				$(item).find("#total"+$no).text(newTotal)
+				count = 1;
+				return;
+			}
+		})
+		
+		let total = "<tr id='food"+$no+"'>";
+		total += "<td id='name"+$no+"'>";
+		total += $name;
+		total += "</td><td id='price"+$no+"'>";
+		total += $price
+		total += "</td><td class='foodCount' id='count"+$no+"'>";
+		total += $count
+		total += "</td><td class='totalprice' id='total"+$no+"'>";
+		total += ($count*$price);
+		total += "</td><td class='cancel'>X</td></tr>";
+				
+		if(count == 0){
+			//console.log("최종",count)
+			$("#totalTable").append(total)
+		}
+		//console.log("클릭끝")
+		let totalprice = 0;
+		$(".totalprice").each(function(index,item){
+			
+			totalprice += Number($(item).text());
+			//console.log(totalprice)
+			$("#totalprice").text(totalprice+"원")
+		})
+		$(".cancel").on("click",function(){
+			$(this).parent().remove()
+			totalprice = 0
+			$(".totalprice").each(function(index,item){
+				totalprice += Number($(item).text());
+				//console.log(totalprice)
+				$("#totalprice").text(totalprice+"원")
+				return;
+			})
+			//console.log($(".totalprice").text())
+			if($(".totalprice").text() == ""){
+				$("#totalprice").text("")
+			}
+		})
+	})
 	
 	let category = "all"
 	$(".category").click(function(){
+		let count = 0;
 		//console.log("category click")
 		category = $(this).attr("id");
 		//console.log(category)
 		$("#menu").empty()
-		let menuhtml = "<table border='1'>";
+		menuhtml = "<table border='1'>";
 		menuhtml += "<tr>";
 		$(menu).each(function(index,item){
-			console.log(menu)
+			//console.log(menu)
 			if(category == "all") {
+				count += 1;
 				menuhtml += "<td class='item'>";
-				menuhtml += "<img src='http://ahp7242.cdn3.cafe24.com/food/";
+				menuhtml += "<img src='http://nextn1028.cdn3.cafe24.com/food/";
 				menuhtml += item.fileName;
 				menuhtml += "' class='image' id='No"+item.foodNo+"' alt='";
 				menuhtml += item.foodName;
 				menuhtml += "'>";
+				menuhtml += "<div>"+item.foodName+"</div>";
 				menuhtml += "<div class='price'><input type='number' value='1' min='1' id='count'><p id='price'>";
 				menuhtml += item.foodPrice;
 				menuhtml += "원</p></div>"
 					menuhtml += "</td>"
-				if((index+1)%5 == 0){
+				if(count%5 == 0){
 					menuhtml += "</tr><tr>"
 				}
 			}
 			if(category == item.foodCategory){
+				count += 1;
 				menuhtml += "<td class='item'>";
-				menuhtml += "<img src='http://ahp7242.cdn3.cafe24.com/food/";
+				menuhtml += "<img src='http://nextn1028.cdn3.cafe24.com/food/";
 				menuhtml += item.fileName;
 				menuhtml += "' class='image' id='No"+item.foodNo+"' alt='";
 				menuhtml += item.foodName;
 				menuhtml += "'>";
+				menuhtml += "<div>"+item.foodName+"</div>";
 				menuhtml += "<div class='price'><input type='number' value='1' min='1' id='count'><p id='price'>";
 				menuhtml += item.foodPrice;
-				menuhtml += "원</p></div>";
-				menuhtml += "</td>";
-				if((index+1)%5 == 0){
-					menuhtml += "</tr><tr>";
+				menuhtml += "원</p></div>"
+					menuhtml += "</td>"
+				if(count%5 == 0){
+					menuhtml += "</tr><tr>"
 				}
 			}
 		})
@@ -264,16 +356,16 @@ $(document).ready(function(){
 		$('.image').on('click',function() {
 			let count = 0;
 			//console.log("image click")
-			let $no = $(this).attr("id")
-			let $name = $(this).attr("alt")
-			let $price = $(this).next().find("#price").text()
-			let $count = Number($(this).next().find("#count").val())
+			$no = $(this).attr("id")
+			$name = $(this).attr("alt")
+			$price = $(this).next().next().find("#price").text()
+			$count = Number($(this).next().next().find("#count").val())
 			$price = Number($price.substr(0,($price.length-1)))
-			console.log("가격 :"+$price)
-			console.log("수량 :"+$count)
-			console.log("이미지 :"+$name)
+			//console.log("가격 :"+$price)
+			//console.log("수량 :"+$count)
+			//console.log("이미지 :"+$name)
 			$no = $no.substr(2)
-			console.log("번호:",$no)
+			//console.log("번호:",$no)
 			
 			$("#totalTable tr").each(function(index,item){
 				if($(item).attr("id") == ("food"+$no)){
@@ -438,7 +530,7 @@ $(document).ready(function(){
 		//console.log(seatNoList)
 		$(seatNoList).each(function(index,item){
 			$.ajax({
-				url:"/seatReservation",
+				url:"/nor/seatReservation",
 				method:"POST",
 				data:{"seatNo":item, 
 					  "date":$("#date").val(), 
@@ -450,11 +542,11 @@ $(document).ready(function(){
 			if($(item).attr("id") != null){
 				let foodNo = $(item).attr("id").substr(4)
 				let count = $(item).find("#count"+foodNo).text()
-				console.log(foodNo)
-				console.log(count)
-				console.log($("#date").val(),$("#time").val())
+				//console.log(foodNo)
+				//console.log(count)
+				//console.log($("#date").val(),$("#time").val())
 				$.ajax({
-					url:"/foodReservation",
+					url:"/nor/foodReservation",
 					method:"POST",
 					data:{"foodNo":foodNo, 
 						  "date":$("#date").val(), 

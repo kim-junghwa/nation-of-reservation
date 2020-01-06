@@ -23,10 +23,10 @@
 </head>
 <body>
 	<div id="logo" >
-		<img src="/loginimage/logo.jpg">
+		<img src="/nor/loginimage/logo.jpg">
 	</div>	
 	<!-- 메뉴바 -->
-	<div th:include="/part/customerNav::befornav" class="gradation"></div>
+	<div th:include="/part/templet::nav" class="gradation"></div>
   
 	<!-- Page Content -->
 	<div class="container">
@@ -48,11 +48,17 @@
          	FeedBack Content:
             <textarea class="form-control" th:text="${feedBack.feedBackBoardContent}" cols="50" rows="10" id="feedBackBoardContent" name="feedBackBoardContent" readonly="readonly"></textarea>
          </div>
-         <a href="/getFeedBackBoardList" class="btn btn-info">목록으로</a>
+         <a href="/nor/getFeedBackBoardList" class="btn btn-info">목록으로</a>
       </form>
    </div>
-  <!-- Footer -->
-  <div th:include="/part/customerNav::copyright" class="gradation"></div>
+     
+  <div th:fragment="copyright">
+     <footer class="py-5 bg-dark">
+       <div class="container">
+         <p class="m-0 text-center text-white">Copyright &copy; PICABOO 2019</p>
+       </div>
+     </footer>
+  </div>
 </body>
 
 </html>

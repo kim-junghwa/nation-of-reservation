@@ -23,15 +23,15 @@
 </head>
 <body>
 	<div id="logo" >
-		<img src="/loginimage/logo.jpg">
+		<img src="/nor/loginimage/logo.jpg">
 	</div>	
 	<!-- 메뉴바 -->
-	<div th:include="/part/customerNav::befornav" class="gradation"></div>
+	<div th:include="/part/templet::nav" class="gradation"></div>
   
 	<!-- Page Content -->
 	<div class="container">
 	<h4>FeedBack</h4>
-	<form action="/addFeedBack" class="was-validated" method="post">  
+	<form action="/nor/addFeedBack" class="was-validated" method="post">  
 		<div class="form-group">
 			<label for="feedBackBoardTitle">FeedBack_Title:</label> 
 			<input type="text" class="form-control" id="feedBackBoardTitle" placeholder="Enter qnaTitle" name="feedBackBoardTitle" required>
@@ -47,8 +47,14 @@
 		<button id="addButton" type="submit" class="btn btn-primary">입력</button>	
 	</form>
 	</div>
-  <!-- Footer -->
-  <div th:include="/part/customerNav::copyright" class="gradation"></div>
+     
+  <div th:fragment="copyright">
+     <footer class="py-5 bg-dark">
+       <div class="container">
+         <p class="m-0 text-center text-white">Copyright &copy; PICABOO 2019</p>
+       </div>
+     </footer>
+  </div>
 </body>
 
 </html>

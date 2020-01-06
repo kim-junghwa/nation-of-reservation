@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Admin QnA Answerd</title>
+  <title>Admin QnA List</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -53,7 +53,7 @@
   <div th:fragment="nav">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="/adminIndex">PI-CA-BOO</a>
+      <a class="navbar-brand" href="/nor/adminIndex">PI-CA-BOO</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -66,13 +66,7 @@
        
           <!-- 로그아웃 -->
           <li class="nav-item">
-            <a class="nav-link" href="/logout">logout</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="/nor/logout">logout</a>
           </li>
         </ul>
       </div>
@@ -85,38 +79,38 @@
        <!-- 가맹점 목록 -->
        <header class="jumbotron my-4">
        <h3>QnA List</h3>
-      <div class="row text-center">
-         <div class="col-lg-3 col-md-6 mb-4"  th:each="str:${map.list}" th:if="${str.qnaAnswer == null}">
-      
-         <div class="card h-100"> 
-           <div class="card-body">
-               <h4 class="card-title" th:text="${str.customerNo}">customerNo</h4>
-             </div>
-             
-             <div class="card-body">
-               <h4 class="card-title" th:text="${str.qnaType}">qnaType</h4>
-             </div>
-             
-             <div class="card-body">
-               <h4 class="card-title" th:text="${str.qnaTitle}">qnaTitle</h4>
-             </div> 
-             
-             <div class="card-body">
-               <h4 class="card-title" th:text="${str.qnaDate}">qnaDate</h4>
-             </div>
-             
-             <div class="card-footer">
-               <a href="#" class="btn btn-primary" th:href="@{/QnADetail?(qnaNo=${str.qnaNo})}" th:text="답변입력하기">답변입력하기</a>
-           </div>
-         </div>
-   
-   </div>
-    </div>
-      <a th:if="${map.currentPage > 1}" th:href="@{/QnAList?(currentPage=${map.currentPage-1})}">이전</a>
+		<div class="row text-center">
+	      <div class="col-lg-3 col-md-6 mb-4"  th:each="str:${map.list}" th:if="${str.qnaAnswer == null}">
+	   
+			<div class="card h-100"> 
+			  <div class="card-body">
+	            <h4 class="card-title" th:text="${str.customerNo}">customerNo</h4>
+	          </div>
+	          
+	          <div class="card-body">
+	            <h4 class="card-title" th:text="${str.qnaType}">qnaType</h4>
+	          </div>
+	          
+	          <div class="card-body">
+	            <h4 class="card-title" th:text="${str.qnaTitle}">qnaTitle</h4>
+	          </div> 
+	          
+	          <div class="card-body">
+	            <h4 class="card-title" th:text="${str.qnaDate}">qnaDate</h4>
+	          </div>
+	          
+	          <div class="card-footer">
+	            <a href="#" class="btn btn-primary" th:href="@{/QnADetail?(qnaNo=${str.qnaNo})}" th:text="답변입력하기">답변입력하기</a>
+			  </div>
+			</div>
+	
+	</div>
+	 </div>
+	   <a th:if="${map.currentPage > 1}" th:href="@{/QnAList?(currentPage=${map.currentPage-1})}">이전</a>
        <a th:if="${map.currentPage < map.lastPage}" th:href="@{/QnAList?(currentPage=${map.currentPage+1})}">다음</a>
  
-       </header>
-   </div>
+	    </header>
+	</div>
    </div>
    <!-- Footer -->
    <div th:fragment="copyright">

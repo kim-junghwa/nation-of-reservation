@@ -6,7 +6,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Heroic Features - Start Bootstrap Template</title>
+<title>My Reservation</title>
 <!-- Bootstrap core CSS -->
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
@@ -14,28 +14,28 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
-#logo {
-	text-align: center;
-	height: 170px;
-}
-
-.gradation {
-	background: linear-gradient(to right bottom, #B96BC6, #FE5196);
-}
-
-.size{
-	height: 500px;
-	width: 500px;
-}
-
-.center{
-	text-align: center;
-}
+	#logo {
+		text-align: center;
+		height: 170px;
+	}
+	
+	.gradation {
+		background: linear-gradient(to right bottom, #B96BC6, #FE5196);
+	}
+	
+	.size{
+		height: 500px;
+		width: 500px;
+	}
+	
+	.center{
+		text-align: center;
+	}
 </style>
 </head>
 <body>
 	<div id="logo">
-		<img src="/loginimage/logo.jpg">
+		<img src="/nor/loginimage/logo.jpg">
 	</div>
 	<!-- Navigation(상단메뉴) -->
 	<div th:include="/part/customerNav::afternav" class="gradation"></div>
@@ -112,7 +112,7 @@ var seatChart = new Chart(seatctx, {
 				let franchiseeNo = item[0]._model.label
 
 				$.ajax({
-					url : "/getMyFoodReservation",
+					url : "/nor/getMyFoodReservation",
 					method : "POST",
 					data : {
 						"franchiseeNo" : franchiseeNo
@@ -158,7 +158,7 @@ var seatChart = new Chart(seatctx, {
 	$(document).ready(function() {
 
 		$.ajax({
-			url : "/getMySeatReservation",
+			url : "/nor/getMySeatReservation",
 			method : "POST",
 			success : function(json) {
 				//console.log("success")
