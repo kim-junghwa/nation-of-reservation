@@ -30,7 +30,7 @@
 			a.jibun_address,
 			a.detail_address
 		FROM franchisee f
-		INNER JOIN address a
+		INNER JOIN p_address a
 		ON f.address_no = a.address_no
 	]]>
 	</select>
@@ -60,8 +60,8 @@
 			 road_address,
 			 jibun_address,
 			 detail_address
-		FROM customer c
-		INNER JOIN address a
+		FROM p_customer c
+		INNER JOIN p_address a
 		ON c.address_no = a.address_no
 		WHERE c.customer_no = #{customerNo}
 	]]>

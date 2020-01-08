@@ -46,6 +46,7 @@ public class CustomerController {
 	    // Model로 넘김
 	    model.addAttribute("customer", customer);
 	    model.addAttribute("franchiseeList", franchiseeList);
+	    model.addAttribute("memberName",session.getAttribute("memberName"));
 	    
 		return "customer/searchOnMap";
 	}

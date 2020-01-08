@@ -60,14 +60,14 @@
 	
 	<div th:include="/part/customerNav::copyright" class="gradation"></div>
 	<!-- 카카오 지도 services와 clusterer, drawing 라이브러리 불러오기 -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=85a58cfdaef447c30f256b7ef482b788&libraries=services,clusterer,drawing"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d03ba7164dc6437ec2d6dc9d1097933&libraries=services,clusterer,drawing"></script>
 	<!-- 카카오 주소 -->
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	
 	<script th:inline="javascript">
 		let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		    mapOption = { 
-		        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		        center: new kakao.maps.LatLng(37.47836359150607, 126.87938176254293), // 지도의 중심좌표
 		        level: 3 // 지도의 확대 레벨
 		    };  
 		
@@ -103,11 +103,7 @@
 		    {
 		    	content: "<div>리그 PC방</div> <br><a href='/nor/selectCustomerSeat?franchiseeNo=F0000002'>예약하기</a>",
 				latlng: new kakao.maps.LatLng(37.48488161105234, 126.87431493900152)
-		    },
-		    {
-		    	content: "<div>긱스타 PC방</div> <br><a href='/nor/selectCustomerSeat?franchiseeNo=F0000003'>예약하기</a>",
-				latlng: new kakao.maps.LatLng(37.44645739182007, 126.72625184474508)
-		    },
+		    }
 		];
 		
 		// 마커를 표시할 가맹점의 위치와 이름을 가지는 객체

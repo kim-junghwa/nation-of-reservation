@@ -88,7 +88,7 @@
 	<!-- 주소 입력 -->
 	<insert id="insertAddress" parameterType="com.picaboo.nor.membership.vo.Address" useGeneratedKeys="true" keyProperty="addressNo">
 	<![CDATA[
-		INSERT INTO address (
+		INSERT INTO p_address (
 			road_address,
 			jibun_address,
 			detail_address,
@@ -432,7 +432,7 @@
 	<!-- 고객의 상세정보를 수정하는 매퍼 -->
 	<update id="updateFranchiseeOwner" parameterType="com.picaboo.nor.franchisee.vo.FranchiseeOwner">
 	<![CDATA[
-	  UPDATE customer SET 
+	  UPDATE p_customer SET 
 	     customer_name = #{customerName},
 	     customer_email = #{customerEmail},
 	     customer_phone = #{customerPhone}
@@ -453,7 +453,7 @@
             customer_email as customerEmail,
             customer_phone as customerPhone,
             customer_type as customerType
-      FROM customer
+      FROM p_customer
       WHERE customer_no = #{String}
     ]]>
     </select>
